@@ -9,12 +9,11 @@ export function VirtualDom(){
     }
 
     const array = [1,2,3,4,5,6,7,8,9,10,11,12]
-;    return (
+    return (
         <>
-        
-        <button type="button" onClick={handleClick}>Increment</button>
-        <h1>{counter}</h1>
-        <ul>{array.map((item) => <li key={item}>{item}</li>)}</ul>
+            <button type="button" onClick={handleClick}>Increment</button>
+            <h1>{counter}</h1>
+            <ul>{array.map((item) => <li key={item}>{item}</li>)}</ul>
         </>
     )
 }

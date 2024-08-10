@@ -34,8 +34,10 @@ import { UseEffectHook } from './hooks/use-effect';
 import {LocalFiles} from './local-files/local-file';
 
 //Router
-
 import {RouterMain} from './react-router/router-main';
+
+// list 
+import {List} from './list/list';
 
 const root =  ReactDom.createRoot(document.getElementById("root"))
 
@@ -51,12 +53,14 @@ root.render(
     // <VirtualDom></VirtualDom>
     //<ConditinalRendering></ConditinalRendering>
     // <LocalFiles></LocalFiles>
+    <List></List>
+    
 
     // hooks
         // <UseEffectHook></UseEffectHook>
 
     // router
-        <RouterMain></RouterMain>
+        // <RouterMain></RouterMain>
 
 );
 

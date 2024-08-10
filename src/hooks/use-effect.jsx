@@ -22,9 +22,6 @@ export function UseEffectHook(){
     //     console.log("in side use effect");
     // },[counter]);
 
-
-   
-
     return (
       <>
         {/* <button type="button" onClick={() => {

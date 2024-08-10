@@ -38,21 +38,18 @@ export function ProductList(){
 }
 
 
-
 function ProductCard({image,title,description,price}) {
-
-return (
-    <>
-    <div className="card">
-    <img src={image} alt="Avatar" style={{width:'100%'}} />
-    <div className="container">
-        <h4><b>John Doe</b></h4>
-        <p>{title}</p>
-        <p>{description}</p>
-        <p> Price : {price}</p>
-    </div>
-    </div>
-    
-    </>
-)
+    return (
+        <>
+            <div className="card">
+            <img src={image} alt="Avatar" style={{width:'100%'}} />
+            <div className="container">
+                <h4><b>John Doe</b></h4>
+                <p>{title}</p>
+                <p>{description}</p>
+                <p> Price : {price}</p>
+            </div>
+            </div>
+        </>
+    )
 }

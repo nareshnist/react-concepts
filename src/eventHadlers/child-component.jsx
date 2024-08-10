@@ -14,7 +14,6 @@
 // }
 
 // Passing event handlers as props 
-
 // export function Button(props){
 //     const {onClick,children} = props;
 //     console.log(props);
@@ -22,7 +21,6 @@
 //         <button onClick={onClick}>{children}</button>
 //     )
 // }
-
 
 // export function PlayButton({movieName}){
 //     const handlePlayClick = (e) =>{
@@ -42,7 +40,6 @@
 //         <Button onClick ={handleUploadClick} >uploadimage</Button>
 //     )
 // }
-
 
 // Naming event handler props 
 
