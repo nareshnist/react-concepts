@@ -1,0 +1,31 @@
+.mins {
+    background-color: red;
+    width: 50px;
+    padding: 8px 12px;
+    color:#fff;
+
+}
+
+.plus {
+    background-color: green;
+    width: 50px;
+    padding: 8px 12px;
+    color:#fff;
+
+}
+
+/* body {
+    margin:100px auto;
+    height: 50vh;
+    width: 50vh;
+    display: flex;
+  } */
+
+  .content {
+    display: inline-block;
+    padding: 12px 8px;
+  }
+
+  button:disabled {
+    opacity: 0.4;
+  }

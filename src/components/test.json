@@ -1,0 +1,200 @@
+{
+    "data": {
+        "cve_by_title": {
+            "language": "en",
+            "title": "CVE-2018-1002105",
+            "searchApiId": "entity:node/32378:en",
+            "field_cve_threat_severity_text": "Critical",
+            "field_cve_public_date": "2018-12-03T17:00:00.000Z",
+            "changed": "2024-03-06T15:30:05.000Z",
+            "field_cve_references_text": [
+                "https://www.cve.org/CVERecord?id=CVE-2018-1002105",
+                "https://nvd.nist.gov/vuln/detail/CVE-2018-1002105",
+                "https://access.redhat.com/security/vulnerabilities/3716411",
+                "https://groups.google.com/forum/#!topic/kubernetes-announce/GVllWCg6L88"
+            ],
+            "field_cve_details_source_text": "Red Hat",
+            "field_cve_change_log_txt": "",
+            "bugzilla": {
+                "description": "kubernetes: authentication/authorization bypass in the handling of non-101 responses",
+                "id": 1648138,
+                "url": "https://bugzilla.redhat.com/show_bug.cgi?id=1648138",
+                "__typename": "BugzillaInfo"
+            },
+            "cweDetail": {
+                "description": "",
+                "html": "<a href='http://cwe.mitre.org/data/definitions/305.html'>CWE-305</a>: Authentication Bypass by Primary Weakness",
+                "__typename": "CweDetail"
+            },
+            "cvss3": {
+                "status": "VERIFIED",
+                "redHat": {
+                    "score": 9.8,
+                    "vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "scoreBreakdown": [
+                        {
+                            "label": "Attack Vector",
+                            "value": "Network",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Attack Complexity",
+                            "value": "Low",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Privileges Required",
+                            "value": "None",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "User Interaction",
+                            "value": "None",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Scope",
+                            "value": "Unchanged",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Confidentiality",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Integrity Impact",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Availability Impact",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        }
+                    ],
+                    "__typename": "Cvss3RedHat"
+                },
+                "nvd": {
+                    "score": 9.8,
+                    "vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "scoreBreakdown": [
+                        {
+                            "label": "Attack Vector",
+                            "value": "Network",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Attack Complexity",
+                            "value": "Low",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Privileges Required",
+                            "value": "None",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "User Interaction",
+                            "value": "None",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Scope",
+                            "value": "Unchanged",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Confidentiality",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Integrity Impact",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        },
+                        {
+                            "label": "Availability Impact",
+                            "value": "High",
+                            "__typename": "CveScoreBreakdown"
+                        }
+                    ],
+                    "__typename": "Cvss3Nvd"
+                },
+                "redHatScoreExplanation": "",
+                "__typename": "Cvss3Score"
+            },
+            "cvss2": {
+                "status": "NULL",
+                "redHat": {
+                    "score": null,
+                    "vector": null,
+                    "scoreBreakdown": null,
+                    "__typename": "Cvss2RedHat"
+                },
+                "nvd": {
+                    "score": null,
+                    "vector": null,
+                    "scoreBreakdown": null,
+                    "__typename": "Cvss2Nvd"
+                },
+                "redHatScoreExplanation": "",
+                "__typename": "Cvss2Score"
+            },
+            "field_cve_faq_txt": [
+                {
+                    "question": "Why is Red Hat's CVSS v3 score or Impact different from other vendors?",
+                    "answer": "For open source software shipped by multiple vendors, the CVSS base scores may vary for each vendor's version depending on the version they ship, how they ship it, the platform, and even how the software is compiled. This makes scoring of vulnerabilities difficult for third-party vulnerability databases such as NVD that only provide a single CVSS base score for each vulnerability. Red Hat scores reflect how a vulnerability affects our products specifically.<br><br>For more information, see <a href=\"https://access.redhat.com/solutions/762393\">https://access.redhat.com/solutions/762393</a>.",
+                    "__typename": "CveFaq"
+                },
+                {
+                    "question": "My product is listed as \"Under investigation\" or \"Affected\", when will Red Hat release a fix for this vulnerability?",
+                    "answer": "<ul><li>\"Under investigation\" doesn't necessarily mean that the product is affected by this vulnerability. It only means that our Analysis Team is still working on determining whether the product is affected and how it is affected.</li><li>\"Affected\" means that our Analysis Team has determined that this product is affected by this vulnerability and might release a fix to address this in the near future.</li></ul>",
+                    "__typename": "CveFaq"
+                },
+                {
+                    "question": "What can I do if my product is listed as \"Will not fix\"?",
+                    "answer": "This depends mostly on the <a href=\"https://access.redhat.com/security/updates/classification/\">Impact</a> of the vulnerability and the <a href=\"https://access.redhat.com/product-life-cycles/update_policies\">Life Cycle</a> phase in which your product is currently in. Overall, you have the following options:<ul><li>Upgrade to a supported product version that includes a fix for this vulnerability (recommended)</li><li>Apply a mitigation (if one exists)</li><li>Open a <a href=\"https://access.redhat.com/support/cases/#/new\">support case</a> to request a prioritization of releasing a fix for this vulnerability</li></ul>",
+                    "__typename": "CveFaq"
+                },
+                {
+                    "question": "What is a mitigation?",
+                    "answer": "A mitigation is an action that can be taken to reduce the impact of a security vulnerability, without deploying any fixes.",
+                    "__typename": "CveFaq"
+                },
+                {
+                    "question": "I have a Red Hat product but it is not in the above list, is it affected?",
+                    "answer": "The listed products were found to include one or more of the components that this vulnerability affects. These products underwent a thorough evaluation to determine their affectedness by this vulnerability. Note that layered products (such as container-based offerings) that consume affected components from any of the products listed in this table may be affected and are not represented.",
+                    "__typename": "CveFaq"
+                },
+                {
+                    "question": "Why is my security scanner reporting my product as vulnerable to this vulnerability even though my product version is fixed or not affected?",
+                    "answer": "In order to maintain code stability and compatibility, Red Hat usually does not rebase packages to entirely new versions. Instead, we <a href=\"https://access.redhat.com/security/updates/backporting\">backport</a> fixes and new features to an older version of the package we distribute. This can result in some security scanners that only consider the package version to report the package as vulnerable. To avoid this, we suggest that you use an approved vulnerability scanner from our <a href=\"https://connect.redhat.com/en/partner-with-us/red-hat-vulnerability-scanner-certification\">Red Hat Vulnerability Scanner Certification</a> program.",
+                    "__typename": "CveFaq"
+                }
+            ],
+            "locales": [
+                {
+                    "locale": "en",
+                    "field_cve_statement_text": "In versions 3.6 and higher of OpenShift Container Platform, this vulnerability allows cluster-admin level access to any API hosted by an aggregated API server. This includes the ‘service catalog’ API which is installed by default in 3.7 and later. Cluster-admin level access to the service catalog allows creation of brokered services by an unauthenticated user with escalated privileges in any namespace and on any node. This could lead to an attacker being allowed to deploy malicious code, or alter existing services.",
+                    "field_cve_acknowledgement_text": "Red Hat would like to thank the Kubernetes Product Security Team for reporting this issue. Upstream acknowledges Darren Shepherd as the original reporter.",
+                    "field_cve_details_text": "A privilege escalation vulnerability exists in OpenShift Container Platform which allows for compromise of pods running co-located on a compute node. This access could include access to all secrets, pods, environment variables, running pod/container processes, and persistent volumes, including in privileged containers.",
+                    "field_cve_mitigation_text": "<p>See the vulnerability article for mitigation procedures.<br /></p>",
+                    "field_cve_vulnerability_url": "",
+                    "__typename": "CveLocale"
+                },
+                {
+                    "locale": "ja",
+                    "field_cve_statement_text": "OpenShift Container Platform のバージョン 3.6 およびそれ以降で、この脆弱性により、集合 API サーバーがホストするすべての API に cluster-admin レベルのアクセスが可能になります。これには 3.7 およびそれ以降でデフォルトでインストールされる ‘service catalog’ API が含まれます。service catalog への cluster-admin レベルのアクセスにより、非認証のユーザーがどの名前空間やノード上でも権限をエスカレートさせて仲介型サービスが作成できるようになります。これにより攻撃者は、悪意のあるコードをデプロイしたり既存サービスを変更できるようになります。",
+                    "field_cve_acknowledgement_text": "Red Hat は Kubernetes Product Security Team がこの問題を報告してくださったことに感謝の意を表します。また、この脆弱性の最初の報告者である Darren Shepherd 氏に対してもアップストリームから感謝の意を表します。",
+                    "field_cve_details_text": "OpenShift Container Platform で権限エスカレートの脆弱性が見つかりました。これにより、コンピュートノード上で co-located で実行中のポッドが危険にされされます。このアクセスには権限を必要とするコンテナーを含む、すべての秘密、ポッド、環境変数、実行中のポッド/コンテナープロセス、および永続的なボリュームへのアクセスが含まれます。",
+                    "field_cve_mitigation_text": "<p>軽減策については、脆弱性のアーティクルを参照してください。<br /></p>",
+                    "field_cve_vulnerability_url": "",
+                    "__typename": "CveLocale"
+                }
+            ],
+            "__typename": "Cve"
+        }
+    }
+}

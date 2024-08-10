@@ -1,0 +1,24 @@
+
+
+
+what is jsx ?
+    jsx is javascript xml
+    jxs help us to write html code into javascript without using createElement or appen/appenDchild
+    has strict syntax rules 
+        how  to use attributes
+        how to mus multiple html element
+        must closed all elements like img , input
+what is components 
+    two types
+        functional components.
+        class based components.
+    componnets are the independent reusable code of block.
+    componnet in side another component.
+    componnet's in files which help us to re use the logic.
+import & export 
+    named imports
+    default imports
+jsx expression & attributes.
+    dynamic binding with {}
+
+    

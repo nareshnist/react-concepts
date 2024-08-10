@@ -1,0 +1,23 @@
+button {
+    width: 80px !important;
+    height: 80px;
+    font-size: 26px;
+    cursor: pointer;
+    border: none;
+    border-top :1px solid #666;
+    border-right :1px solid #666;
+}
+
+.operator {
+    border-right: none;
+    background-color: #fb9419;
+    color: #fff;
+}
+
+.digit:hover {
+    background-color:#d9d9d9 ;
+}
+
+.fun-key {
+    background-color: #c9c8cc;
+}
