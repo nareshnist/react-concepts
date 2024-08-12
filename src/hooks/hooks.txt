@@ -1,0 +1,28 @@
+
+
+# hooks are introduced in react 16 with functional components.
+
+# hook is nothing but function 
+    # we have different hooks
+
+    # useState  ---> Data Handle
+    # useEffect ---> onload & watch change & re exicute.
+    # useRef    ---> Access the dom element & won't re-render the value  
+        to make reactive use along with useSate & observe the console
+        useRaf Doesn't trigger re rendering & its reactive means it will change the value in code & shows unless re rendering.
+        its preserve the data while component re rendering .
+
+        example const element = useRef(null);
+            single    ref = {element}
+            multiple    ref = {(ele) => element.current[0] = ele}
+
+
+
+
+
+
+
+
+
+
+# custom hooks

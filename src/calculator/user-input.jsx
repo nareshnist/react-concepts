@@ -19,7 +19,6 @@ export function Calculator(props) {
         setInput(() => eval(input));
     }
 
-
     return(
         <div className="container m-0">
             <header>

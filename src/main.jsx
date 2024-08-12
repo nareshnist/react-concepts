@@ -29,6 +29,9 @@ import {ConditinalRendering} from './conditinal/conditional-rendering';
 
 //Hooks 
 import { UseEffectHook } from './hooks/use-effect';
+import {UseRefHook} from './hooks/use-ref';
+import {CustomeHook} from './hooks/custom-hook';
+import {TestCustomeHook} from './hooks/custom-hook-exaple'
 
 //LocalFiles 
 import {LocalFiles} from './local-files/local-file';
@@ -53,11 +56,14 @@ root.render(
     // <VirtualDom></VirtualDom>
     //<ConditinalRendering></ConditinalRendering>
     // <LocalFiles></LocalFiles>
-    <List></List>
+    // <List></List>
     
 
     // hooks
         // <UseEffectHook></UseEffectHook>
+        // <UseRefHook></UseRefHook>
+        // <CustomeHook></CustomeHook>
+        <TestCustomeHook></TestCustomeHook>
 
     // router
         // <RouterMain></RouterMain>
