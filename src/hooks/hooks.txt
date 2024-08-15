@@ -15,6 +15,10 @@
         example const element = useRef(null);
             single    ref = {element}
             multiple    ref = {(ele) => element.current[0] = ele}
+    # useContext hook help use to use the props drill down concept.
+        refer folder props-drill-down
+    # memo ---> remembering the task result.
+        memorization concept in java script.
 
 
 

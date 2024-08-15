@@ -1,0 +1,11 @@
+
+
+# component life cycle hook has three stages
+
+    Mounting   --- >
+    Updating
+    unMounting
+
+
+// life cycle hooks related to class component
+// hooks for functional component
