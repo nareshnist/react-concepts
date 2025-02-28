@@ -1,0 +1,56 @@
+// useContext Hook Example in React
+// This example demonstrates how to use the useContext hook for state management
+// without prop drilling in a React application.
+
+// What is useContext?
+// The useContext hook allows components to access values from a React Context without prop drilling.
+// It helps in managing global state efficiently.
+
+// Use Cases of useContext:
+// 1. Avoid Prop Drilling – When multiple components need the same data without passing props through every level.
+// 2. Global State Management – Helps manage themes, authentication, language settings, and user preferences.
+// 3. Lightweight Alternative to Redux – Suitable for simpler state management needs.
+// 4. Shared Configuration – Can store API URLs, environment settings, etc.
+
+// Import necessary modules
+import { createContext, useContext, useState } from "react";
+
+// Creating a Context
+const MyContext = createContext();
+
+// Creating a Provider Component
+// This component provides the context value to its children
+const MyProvider = ({ children }) => {
+  const [user, setUser] = useState("Naresh");
+
+  return (
+    <MyContext.Provider value={{ user, setUser }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
+
+// Consuming Context in a Component
+// This component uses the context value without needing to receive props
+const ChildComponent = () => {
+  const { user, setUser } = useContext(MyContext);
+
+  return (
+    <div>
+      <h2>User: {user}</h2>
+      <button onClick={() => setUser("New User")}>Change User</button>
+    </div>
+  );
+};
+
+// Using the Provider in the App
+// The MyProvider component wraps the application to provide context values
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <MyProvider>
+    <ChildComponent />
+  </MyProvider>,
+  document.getElementById("root")
+);

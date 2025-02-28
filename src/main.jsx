@@ -37,7 +37,8 @@ import UseStateHook from './hooks/use-state';
 import { UseEffectHook } from './hooks/use-effect';
 import {UseMemo} from './hooks/use-memo';
 import {UseRefHook} from './hooks/use-ref';
-import { UseContextHook} from './hooks/use-context'
+// import { UseContextHook} from './hooks/use-context';
+import {UseReducerHook} from './hooks/use-reducer';
 // import {CustomeHook} from './hooks/custom-hook';
 // import {TestCustomeHook} from './hooks/custom-hook-exaple';
 
@@ -89,7 +90,9 @@ root.render(
         // <UseEffectHook></UseEffectHook>
         // <UseMemo></UseMemo>
         // <UseRefHook></UseRefHook>
-            <UseContextHook></UseContextHook>
+        // <UseContextHook></UseContextHook>
+            <UseReducerHook></UseReducerHook>
+
         // <CustomeHook></CustomeHook>
         // <TestCustomeHook></TestCustomeHook>
     

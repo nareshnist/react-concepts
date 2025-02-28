@@ -1,0 +1,175 @@
+## Understanding `useReducer` Hook in React
+
+The `useReducer` hook is an alternative to `useState` for managing complex state logic in React components. It is particularly useful when the state transitions depend on previous state values or when handling multiple related state updates.
+
+---
+
+## **Basic Concepts**
+- `useReducer` takes a **reducer function** and an **initial state**.
+- The **reducer function** decides how the state should change based on an **action**.
+- It returns **state** and a **dispatch function**, which is used to trigger state updates.
+
+---
+
+## **Basic Level: Simple Counter Example**
+This example demonstrates the basic structure of `useReducer` by implementing a simple counter.
+
+### **Example: Simple Counter**
+```jsx
+import React, { useReducer } from "react";
+
+// Reducer function
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    case "RESET":
+      return { count: 0 };
+    default:
+      return state;
+  }
+};
+
+const Counter = () => {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <h2>Count: {state.count}</h2>
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
+      <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+---
+
+## **Intermediate Level: Managing Multiple State Properties**
+Now, let's handle more complex state logic where we manage multiple state properties.
+
+### **Example: Form with Multiple Fields**
+```jsx
+import React, { useReducer } from "react";
+
+// Reducer function
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_NAME":
+      return { ...state, name: action.payload };
+    case "SET_EMAIL":
+      return { ...state, email: action.payload };
+    case "RESET":
+      return { name: "", email: "" };
+    default:
+      return state;
+  }
+};
+
+const Form = () => {
+  const [state, dispatch] = useReducer(reducer, { name: "", email: "" });
+
+  return (
+    <div>
+      <h2>Form</h2>
+      <input
+        type="text"
+        placeholder="Name"
+        value={state.name}
+        onChange={(e) => dispatch({ type: "SET_NAME", payload: e.target.value })}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={state.email}
+        onChange={(e) => dispatch({ type: "SET_EMAIL", payload: e.target.value })}
+      />
+      <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+      <p>Name: {state.name}</p>
+      <p>Email: {state.email}</p>
+    </div>
+  );
+};
+
+export default Form;
+```
+
+---
+
+## **Advanced Level: Using `useReducer` with `useContext` for Global State Management**
+In large applications, `useReducer` can be used with `useContext` to manage global state without needing Redux.
+
+### **Example: Global Theme Context**
+```jsx
+import React, { useReducer, createContext, useContext } from "react";
+
+// Create context
+const ThemeContext = createContext();
+
+// Reducer function
+const themeReducer = (state, action) => {
+  switch (action.type) {
+    case "LIGHT":
+      return { theme: "light" };
+    case "DARK":
+      return { theme: "dark" };
+    default:
+      return state;
+  }
+};
+
+// Provider component
+const ThemeProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(themeReducer, { theme: "light" });
+
+  return (
+    <ThemeContext.Provider value={{ state, dispatch }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// Custom hook to use Theme
+const useTheme = () => useContext(ThemeContext);
+
+// Component using Theme
+const ThemeSwitcher = () => {
+  const { state, dispatch } = useTheme();
+
+  return (
+    <div style={{ background: state.theme === "light" ? "#fff" : "#333", color: state.theme === "light" ? "#000" : "#fff", padding: "20px" }}>
+      <h2>Current Theme: {state.theme}</h2>
+      <button onClick={() => dispatch({ type: "LIGHT" })}>Light Mode</button>
+      <button onClick={() => dispatch({ type: "DARK" })}>Dark Mode</button>
+    </div>
+  );
+};
+
+// App Component
+const App = () => {
+  return (
+    <ThemeProvider>
+      <ThemeSwitcher />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+```
+
+---
+
+## **Conclusion**
+| Level | Concepts Covered | Example |
+|-------|----------------|---------|
+| **Basic** | Simple state updates using `useReducer` | Counter |
+| **Intermediate** | Handling multiple state properties | Form with multiple fields |
+| **Advanced** | Using `useReducer` with `useContext` for global state management | Theme switcher |
+
+By mastering `useReducer`, you can manage state more effectively in complex React applications!
+
