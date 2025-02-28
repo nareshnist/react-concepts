@@ -1,0 +1,139 @@
+**React useMemo Hook - Real-World Use Cases**
+
+### What is `useMemo`?
+- `useMemo` is used to **cache the result of an expensive computation** and recompute it only when necessary.
+- It **prevents unnecessary calculations**, improving performance in large applications.
+
+### Syntax:
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+- The function inside `useMemo` runs **only when dependencies (`a`, `b`) change**.
+- If dependencies do not change, it returns the **cached** value.
+
+---
+
+### 1️⃣ Optimizing Expensive Calculations
+**Use Case:** Prevent recalculating a computationally expensive function on every render.
+```jsx
+import React, { useState, useMemo } from "react";
+
+const FactorialCalculator = ({ num }) => {
+  const factorial = (n) => {
+    console.log("Calculating factorial...");
+    return n <= 1 ? 1 : n * factorial(n - 1);
+  };
+
+  const memoizedFactorial = useMemo(() => factorial(num), [num]);
+
+  return <p>Factorial of {num}: {memoizedFactorial}</p>;
+};
+
+const App = () => {
+  const [number, setNumber] = useState(1);
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <input
+        type="number"
+        value={number}
+        onChange={(e) => setNumber(parseInt(e.target.value))}
+      />
+      <button onClick={() => setCount(count + 1)}>Re-render</button>
+      <FactorialCalculator num={number} />
+    </div>
+  );
+};
+export default App;
+```
+**Why use `useMemo`?**
+- Without `useMemo`, factorial() runs on **every render**, wasting CPU.
+- With `useMemo`, it only runs **when `num` changes**.
+
+---
+
+### 2️⃣ Filtering a Large List
+**Use Case:** Avoid filtering a large dataset unnecessarily.
+```jsx
+import React, { useState, useMemo } from "react";
+
+const users = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+  { id: 4, name: "David" },
+];
+
+const App = () => {
+  const [search, setSearch] = useState("");
+
+  const filteredUsers = useMemo(() => {
+    console.log("Filtering users...");
+    return users.filter((user) =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search users..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <ul>
+        {filteredUsers.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+export default App;
+```
+**Why use `useMemo`?**
+- Without `useMemo`, filtering runs **on every render**, even when the search text hasn't changed.
+- With `useMemo`, filtering only happens **when `search` changes**.
+
+---
+
+### 3️⃣ Optimizing Theme Objects
+**Use Case:** Prevent unnecessary object recreation that can cause re-renders.
+```jsx
+import React, { useState, useMemo } from "react";
+
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = useMemo(() => ({
+    backgroundColor: darkMode ? "#333" : "#fff",
+    color: darkMode ? "#fff" : "#000",
+  }), [darkMode]);
+
+  return (
+    <div style={theme}>
+      <button onClick={() => setDarkMode(!darkMode)}>Toggle Theme</button>
+      <p>Hello, this is a themed text!</p>
+    </div>
+  );
+};
+export default App;
+```
+**Why use `useMemo`?**
+- Without `useMemo`, a **new object is created** every render, causing unnecessary updates.
+- With `useMemo`, the theme object **remains the same unless `darkMode` changes**.
+
+---
+
+### When to Use `useMemo`?
+✅ **Use it when:**
+✔️ You have **expensive calculations** that don’t need to run on every render.
+✔️ You are **filtering, sorting, or transforming large datasets**.
+✔️ You need to **prevent unnecessary object re-creation** (to avoid re-renders).
+
+❌ **Avoid using `useMemo` unnecessarily!** Overuse can make your code harder to read and maintain.
+
+🚀 **Use it wisely to improve app performance!**
+

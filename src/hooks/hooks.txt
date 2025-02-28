@@ -20,13 +20,16 @@
     # memo ---> remembering the task result.
         memorization concept in java script.
 
-
-
-
-
-
-
-
-
-
 # custom hooks
+
+
+
+###############################################################################################################################
+
+            hook's
+
+###############################################################################################################################
+
+# React hook only used in the functinal components
+# can't be used in side the if statement,loops,functions ...ectc
+# should be top level

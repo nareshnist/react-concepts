@@ -1,0 +1,190 @@
+### React `useEffect` Hook Notes
+
+#### **Overview**
+- `useEffect` is used for handling side effects in functional components.
+- It replaces lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`.
+
+#### **Different Usage Scenarios**
+
+1. **Without a Dependency Array (`useEffect(() => {...})`)**
+   - Runs **on every render** (initial + re-renders).
+   - Triggers when **any state or prop changes**.
+   - Example:
+     ```jsx
+     useEffect(() => {
+       console.log("Runs on every render");
+     });
+     ```
+
+2. **With an Empty Dependency Array (`useEffect(() => {...}, [])`)**
+   - Runs **only once** (on mount).
+   - Equivalent to `componentDidMount`.
+   - Does **not run on updates or state changes**.
+   - Example:
+     ```jsx
+     useEffect(() => {
+       console.log("Runs only once on mount");
+     }, []);
+     ```
+
+3. **With a Specific Dependency Array (`useEffect(() => {...}, [dependency])`)**
+   - Runs **on mount and whenever the specified dependency changes**.
+   - Equivalent to `componentDidUpdate` for that specific dependency.
+   - Example:
+     ```jsx
+     const [count, setCount] = useState(0);
+
+     useEffect(() => {
+       console.log(`Count changed to: ${count}`);
+     }, [count]);
+     ```
+
+4. **With Cleanup Function (Unmount Behavior)**
+   - The return function inside `useEffect` runs **when the component unmounts** or before the effect re-runs due to dependency changes.
+   - Equivalent to `componentWillUnmount`.
+   - Example:
+     ```jsx
+     useEffect(() => {
+       console.log("Component mounted");
+
+       return () => {
+         console.log("Component unmounted or dependency changed");
+       };
+     }, []);
+     ```
+
+#### **Use Case Scenarios**
+
+1. **Fetching Data from an API (on Mount)**
+   ```jsx
+   useEffect(() => {
+     fetch("https://jsonplaceholder.typicode.com/users")
+       .then((response) => response.json())
+       .then((data) => setUsers(data));
+   }, []);
+   ```
+   ✅ Fetches data only once on mount.
+
+2. **Listening to Window Resize Event**
+   ```jsx
+   useEffect(() => {
+     const handleResize = () => setWidth(window.innerWidth);
+     window.addEventListener("resize", handleResize);
+     return () => window.removeEventListener("resize", handleResize);
+   }, []);
+   ```
+   ✅ Cleans up event listener on unmount.
+
+3. **Updating the Page Title Dynamically**
+   ```jsx
+   useEffect(() => {
+     document.title = `Count: ${count}`;
+   }, [count]);
+   ```
+   ✅ Updates title when `count` changes.
+
+4. **Auto-Saving Input Data (Debounced API Call)**
+   ```jsx
+   useEffect(() => {
+     const timeout = setTimeout(() => {
+       console.log("Auto-saving:", text);
+     }, 500);
+     return () => clearTimeout(timeout);
+   }, [text]);
+   ```
+   ✅ Prevents frequent API calls by debouncing input.
+
+5. **Theme Mode Toggle (Syncing with Local Storage)**
+   ```jsx
+   useEffect(() => {
+     localStorage.setItem("theme", theme);
+     document.body.className = theme;
+   }, [theme]);
+   ```
+   ✅ Saves theme preference across reloads.
+
+#### **Advanced Concepts & Best Practices**
+
+1. **Cleanup Runs Before the Next Effect Execution**
+   ```jsx
+   useEffect(() => {
+     console.log("Effect runs");
+     return () => {
+       console.log("Cleanup before next effect");
+     };
+   }, [dependency]);
+   ```
+   ✅ Ensures that the previous effect is cleaned up before a new one starts.
+
+2. **Avoid Using `useEffect` for Synchronous State Updates**
+   ```jsx
+   // ❌ Incorrect (causes infinite loop)
+   useEffect(() => {
+     setCount(count + 1);
+   }, [count]);
+   ```
+   ✅ Instead, update state **directly inside event handlers**.
+
+3. **Optimize Dependencies to Prevent Unnecessary Re-renders**
+   ```jsx
+   const memoizedValue = useMemo(() => computeExpensiveValue(data), [data]);
+   useEffect(() => {
+     console.log("Runs only when memoizedValue changes");
+   }, [memoizedValue]);
+   ```
+   ✅ Reduces redundant effect executions.
+
+4. **Handling Fetch Requests Properly to Avoid Memory Leaks**
+   ```jsx
+   useEffect(() => {
+     const controller = new AbortController();
+     fetch("https://api.example.com/data", { signal: controller.signal })
+       .then((res) => res.json())
+       .then((data) => setData(data))
+       .catch((err) => {
+         if (err.name !== "AbortError") console.error(err);
+       });
+     return () => controller.abort();
+   }, []);
+   ```
+   ✅ Prevents updating state on an unmounted component.
+
+5. **Using Multiple `useEffect` Hooks for Better Readability**
+   ```jsx
+   useEffect(() => fetchData(), [data]);
+   useEffect(() => subscribeToEvent(), [event]);
+   useEffect(() => updateTitle(), [title]);
+   ```
+   ✅ Keeps code modular and easier to debug.
+
+6. **Understanding Execution Order**
+   ```jsx
+   useEffect(() => console.log("useEffect runs after paint"));
+   useLayoutEffect(() => console.log("useLayoutEffect runs before paint"));
+   ```
+   **Output:**
+   ```
+   useLayoutEffect runs before paint
+   useEffect runs after paint
+   ```
+   ✅ Use `useLayoutEffect` when you need to measure DOM changes before they are painted.
+
+#### **Summary Table**
+
+| Use Case                     | Dependency Array | Why? |
+|------------------------------|----------------|------|
+| Fetch data on mount          | `[]`           | Runs only once |
+| Listen to window resize      | `[]` + cleanup | Prevents memory leaks |
+| Update document title        | `[state]`      | Runs when state changes |
+| Debounced input auto-save    | `[input]` + cleanup | Avoids frequent API calls |
+| Sync theme with localStorage | `[theme]`      | Persists user preference |
+
+#### **Final Thoughts**
+- ✅ Use `useEffect` **only for side effects**.
+- ✅ Optimize dependencies **to prevent unnecessary re-renders**.
+- ✅ Use **cleanup functions** to prevent memory leaks.
+- ✅ Use **multiple `useEffect` hooks** for clarity.
+- ✅ Optimize with **`useMemo` and `useCallback`** when needed.
+
+Understanding these concepts ensures efficient and bug-free React applications!
+

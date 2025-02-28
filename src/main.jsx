@@ -32,12 +32,17 @@ import {VirtualDom} from './virtual-dom/virtual-dom';
 import {ConditinalRendering} from './conditinal/conditional-rendering';
 
 //Hooks 
+
+import UseStateHook from './hooks/use-state';
 import { UseEffectHook } from './hooks/use-effect';
+import {UseMemo} from './hooks/use-memo';
 import {UseRefHook} from './hooks/use-ref';
 // import {CustomeHook} from './hooks/custom-hook';
 // import {TestCustomeHook} from './hooks/custom-hook-exaple';
 
-import {UseMemo} from './hooks/use-memo';
+
+
+
 
 //LocalFiles 
 import {LocalFiles} from './local-files/local-file';
@@ -78,11 +83,15 @@ root.render(
     
 
     // hooks
+
+        // <UseStateHook></UseStateHook>
         // <UseEffectHook></UseEffectHook>
-        // <UseRefHook></UseRefHook>
+            // <UseMemo></UseMemo>
+        <UseRefHook></UseRefHook>
         // <CustomeHook></CustomeHook>
         // <TestCustomeHook></TestCustomeHook>
-        // <UseMemo></UseMemo>
+    
+
 
     // router
         // <RouterMain></RouterMain>
@@ -95,8 +104,7 @@ root.render(
         // <Parent></Parent>
 
     //Bootstrap 
-        <Bootstrap></Bootstrap>
+        //<Bootstrap></Bootstrap>
 
-    
 );
 

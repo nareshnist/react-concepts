@@ -1,0 +1,101 @@
+# 📌 React Hooks - Notes
+
+## 1️⃣ What is React Hook?
+- React Hooks are functions that **allow functional components to use state and lifecycle features** without writing a class component.
+- Introduced in React 16.8 to enhance functional components.
+- Common hooks:
+  - `useState` → Manages local state.
+  - `useEffect` → Handles side effects (e.g., API calls).
+  - `useContext` → Manages global state.
+  - `useReducer` → Alternative to `useState` for complex logic.
+  - `useRef` → Maintains references without re-renders.
+
+## 2️⃣ What is State?
+- State is a JavaScript object that holds dynamic data in a React component.
+- When state changes, React **re-renders** the component with updated values.
+
+## 3️⃣ `useState` Hook
+- `useState` allows functional components to **manage local state**.
+- Syntax:
+  ```jsx
+  const [state, setState] = useState(initialValue);
+  ```
+
+## 4️⃣ Can React Hooks Be Used Inside `if`, Loops, or Functions?
+- **No**, React Hooks (like `useState`) should always be called at the **top level of the component**.
+- Example (Incorrect):
+  ```jsx
+  if (someCondition) {
+    const [count, setCount] = useState(0); // ❌ Not allowed
+  }
+  ```
+- Example (Correct):
+  ```jsx
+  function MyComponent() {
+    const [count, setCount] = useState(0); // ✅ Always at the top level
+    return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
+  }
+  ```
+
+## 5️⃣ Ways to Update `useState`
+
+✅ **Direct Update (New Value)**
+```jsx
+setCount(count + 1);
+```
+❌ **Issue: May cause stale state if multiple updates occur.**
+
+✅ **Functional Update (Recommended for multiple updates)**
+```jsx
+setCount(prevCount => prevCount + 1);
+```
+✔ Ensures updates are based on the latest state.
+
+✅ **Updating Objects (Merge State Manually)**
+```jsx
+setUser(prevUser => ({ ...prevUser, age: 26 }));
+```
+✔ Unlike class components, `useState` **does not merge state automatically**.
+
+## 6️⃣ Things to Know About `useState`
+✔ **State updates may be asynchronous** (React batches updates).  
+✔ **State updates do not always trigger re-renders** (if the value doesn’t change).  
+✔ **Each component instance has its own state**.
+✔ **State should be kept minimal and structured properly.**
+✔ **Avoid modifying state directly; always use the setter function (`setState`).**
+
+## 7️⃣ Initial State Optimization
+If initial state involves **heavy computation**, use a function:
+```jsx
+const [count, setCount] = useState(() => expensiveCalculation());
+```
+✔ Ensures calculation **runs only once**.
+
+## 8️⃣ `useState` Works Per Component Instance
+Each component instance maintains its **own state**.
+```jsx
+<Counter />  // Independent state
+<Counter />  // Independent state
+```
+
+## 9️⃣ Common Mistakes to Avoid
+❌ **Using `useState` inside `if`, loops, or functions**  
+✅ Always define it at the top level.
+
+❌ **Forgetting to spread previous state when updating objects**  
+✅ Use `{ ...prevState, newValue }` to keep other properties.
+
+❌ **Not using functional updates when required**  
+✅ Use `setState(prevState => newValue)` for consistency.
+
+## 🔟 What’s Next?
+🚀 `useEffect` → To handle side effects like API calls.  
+🚀 `useContext` → To share state across components.  
+🚀 `useReducer` → For complex state logic.  
+🚀 `useRef` → To persist values without causing re-renders.  
+🚀 `useMemo` → To optimize performance by memoizing values.  
+🚀 `useCallback` → To memoize functions and avoid unnecessary re-renders.  
+🚀 `useLayoutEffect` → Similar to `useEffect`, but fires synchronously after render.  
+🚀 `useImperativeHandle` → Customizing the instance value exposed when using `React.forwardRef`.  
+🚀 `useDebugValue` → Custom hook debugging info display.  
+
