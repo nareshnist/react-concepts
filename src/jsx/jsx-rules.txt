@@ -1,0 +1,208 @@
+**JSX Rules Guide**
+
+## **🔰 Basic JSX Rules**  
+
+### 1️⃣ JSX Must Have a Single Parent Element  
+**Incorrect:**  
+```jsx
+return (
+  <h1>Hello</h1>
+  <p>World</p>
+);
+```
+**Correct:**  
+```jsx
+return (
+  <div>
+    <h1>Hello</h1>
+    <p>World</p>
+  </div>
+);
+```
+OR (Using Fragments)
+```jsx
+return (
+  <>
+    <h1>Hello</h1>
+    <p>World</p>
+  </>
+);
+```
+
+### 2️⃣ HTML Attributes Use camelCase  
+**Incorrect:**  
+```jsx
+<button class="btn">Click Me</button>  // `class` is incorrect in JSX
+```
+**Correct:**  
+```jsx
+<button className="btn">Click Me</button>
+```
+
+### 3️⃣ Self-Closing Tags for Empty Elements  
+**Incorrect:**  
+```jsx
+<img src="image.jpg" alt="Example">
+```
+**Correct:**  
+```jsx
+<img src="image.jpg" alt="Example" />
+```
+
+### 4️⃣ JSX Allows JavaScript Expressions Inside `{}`  
+**Correct:**  
+```jsx
+const name = "Naresh";
+return <h1>Hello, {name}!</h1>;
+```
+
+## **🚀 Intermediate JSX Rules**  
+
+### 5️⃣ Styling in JSX (`style` Uses Object Format)  
+**Incorrect:**  
+```jsx
+<p style="color: red; font-size: 20px;">Styled Text</p>
+```
+**Correct:**  
+```jsx
+<p style={{ color: "red", fontSize: "20px" }}>Styled Text</p>
+```
+
+### 6️⃣ Conditional Rendering in JSX  
+Using Ternary Operator:
+```jsx
+const isLoggedIn = true;
+return <h1>{isLoggedIn ? "Welcome Back" : "Please Sign In"}</h1>;
+```
+
+Using Logical AND (`&&`):
+```jsx
+const isAdmin = true;
+return <>{isAdmin && <button>Delete</button>}</>;
+```
+
+### 7️⃣ Mapping Over Arrays to Render Lists  
+```jsx
+const users = ["Alice", "Bob", "Charlie"];
+return (
+  <ul>
+    {users.map((user, index) => (
+      <li key={index}>{user}</li>
+    ))}
+  </ul>
+);
+```
+
+## **💡 Expert JSX Rules**  
+
+### 8️⃣ Event Handlers in JSX (`onClick`, `onChange`)  
+```jsx
+<button onClick={() => alert("Clicked!")}>Click Me</button>
+```
+
+### 9️⃣ Using JSX Inside Functions (Dynamic Components)  
+```jsx
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+<Greeting name="Naresh" />
+```
+
+### 🔟 Spreading Props in JSX  
+```jsx
+const buttonProps = { className: "btn", disabled: true };
+return <button {...buttonProps}>Submit</button>;
+```
+
+## **🔹 Additional JSX Rules**  
+
+### 1️⃣1️⃣ Expressions Inside JSX Must Return a Valid Value  
+**Incorrect:**  
+```jsx
+const logMessage = () => console.log("Hello");
+return <h1>{logMessage()}</h1>;
+```
+**Correct:**  
+```jsx
+const getMessage = () => "Hello!";
+return <h1>{getMessage()}</h1>;
+```
+
+### 1️⃣2️⃣ JSX Comments Must Use `{/* */}` Syntax  
+**Incorrect:**  
+```jsx
+// This is a comment  
+```
+**Correct:**  
+```jsx
+{/* This is a JSX comment */}
+```
+
+### 1️⃣3️⃣ Avoid Using Functions Directly in JSX  
+**Incorrect:**  
+```jsx
+<button onClick={handleClick()}>Click Me</button>
+```
+**Correct:**  
+```jsx
+<button onClick={handleClick}>Click Me</button>
+```
+
+### 1️⃣4️⃣ JSX `key` Props Must Be Unique in Lists  
+**Incorrect:**  
+```jsx
+const items = ["A", "B", "C"];
+return items.map((item, index) => <li key={index}>{item}</li>);
+```
+**Correct:**  
+```jsx
+const items = [{ id: 1, name: "A" }, { id: 2, name: "B" }];
+return items.map(item => <li key={item.id}>{item.name}</li>);
+```
+
+### 1️⃣5️⃣ Using JSX Fragments with `key`  
+```jsx
+const items = ["A", "B", "C"];
+return items.map((item, index) => (
+  <React.Fragment key={index}>
+    <h1>{item}</h1>
+    <p>Details</p>
+  </React.Fragment>
+));
+```
+
+### 1️⃣6️⃣ Use `dangerouslySetInnerHTML` with Caution  
+```jsx
+const rawHTML = "<h1>Bold Text</h1>";
+return <div dangerouslySetInnerHTML={{ __html: rawHTML }} />;
+```
+
+### 1️⃣7️⃣ JSX Attributes Cannot Accept Objects (Except `style` & `props`)  
+**Incorrect:**  
+```jsx
+const user = { name: "Naresh" };
+return <h1 attr={user}>Hello</h1>;
+```
+**Correct:**  
+```jsx
+return <h1 attr={JSON.stringify(user)}>Hello</h1>;
+```
+
+## **✨ Summary of JSX Rules**
+
+| Rule | Why It’s Important |
+|------|------------------|
+| Expressions in `{}` must return valid values | Prevents rendering `undefined` or errors |
+| JSX comments use `{/* */}` | Regular comments break JSX |
+| Avoid rendering `null`, `false`, or `undefined` unintentionally | Prevents missing UI |
+| JSX escapes HTML by default | Protects against XSS attacks |
+| Custom components must start with uppercase | React differentiates components vs. elements |
+| Avoid calling functions inside JSX | Prevents unintended execution |
+| Always use **unique keys** in lists | Helps React with efficient re-renders |
+| Use `key` on Fragments in `.map()` | Required for performance optimizations |
+| Be cautious with `dangerouslySetInnerHTML` | Can introduce security risks |
+| JSX attributes don’t accept objects (except `style`) | Objects must be converted to strings |
+
+## **Final Thoughts**
+These JSX rules will help you write **efficient, clean, and error-free React code**. 🚀
+
