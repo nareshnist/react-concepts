@@ -1,0 +1,87 @@
+**Understanding React's `useCallback` Hook**
+
+The `useCallback` hook is a built-in React hook that allows you to memoize functions, preventing them from being recreated on every render unless their dependencies change. This optimization is particularly useful when passing functions as props to child components, as it helps prevent unnecessary re-renders.
+
+**Syntax:**
+
+```jsx
+const memoizedCallback = useCallback(
+  () => {
+    // Your function logic here
+  },
+  [dependencies]
+);
+```
+
+- `() => { // Your function logic here }`: This is the function you want to memoize.
+- `[dependencies]`: An array of dependencies that, when changed, will cause the memoized function to be recreated.
+
+**When to Use `useCallback`:**
+
+- **Passing Functions to Child Components:** If you pass a function as a prop to a child component, wrapping it with `useCallback` ensures that the child component doesn't re-render unnecessarily.
+- **Performance Optimization:** In cases where functions are computationally expensive or when their recreation leads to performance bottlenecks, `useCallback` can help optimize rendering.
+
+**Example Without `useCallback`:**
+
+```jsx
+import React, { useState } from 'react';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent increment={increment} />
+    </div>
+  );
+}
+
+function ChildComponent({ increment }) {
+  console.log('ChildComponent rendered');
+  return <button onClick={increment}>Increment</button>;
+}
+```
+
+In this example, `ChildComponent` will re-render every time `ParentComponent` re-renders because the `increment` function is recreated on each render.
+
+**Example With `useCallback`:**
+
+```jsx
+import React, { useState, useCallback } from 'react';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent increment={increment} />
+    </div>
+  );
+}
+
+function ChildComponent({ increment }) {
+  console.log('ChildComponent rendered');
+  return <button onClick={increment}>Increment</button>;
+}
+```
+
+Here, `useCallback` memoizes the `increment` function, ensuring that `ChildComponent` only re-renders when `count` changes, thereby optimizing performance.
+
+**Key Points:**
+
+- `useCallback` returns a memoized version of the callback function that only changes if one of the dependencies has changed.
+- It is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+- Overusing `useCallback` might lead to more complex code without significant performance benefits, so it should be used judiciously.
+
+For more detailed information and advanced usage, consider referring to the official React documentation on [`useCallback`](https://react.dev/reference/react/useCallback).
+
