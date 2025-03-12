@@ -1,6 +1,6 @@
-**JSX Rules Guide**
+# **JSX Rules Guide**
 
-## **🔰 Basic JSX Rules**  
+## **🇰 Basic JSX Rules**  
 
 ### 1️⃣ JSX Must Have a Single Parent Element  
 **Incorrect:**  
@@ -108,7 +108,7 @@ function Greeting({ name }) {
 <Greeting name="Naresh" />
 ```
 
-### 🔟 Spreading Props in JSX  
+### 🔦 Spreading Props in JSX  
 ```jsx
 const buttonProps = { className: "btn", disabled: true };
 return <button {...buttonProps}>Submit</button>;
@@ -116,7 +116,7 @@ return <button {...buttonProps}>Submit</button>;
 
 ## **🔹 Additional JSX Rules**  
 
-### 1️⃣1️⃣ Expressions Inside JSX Must Return a Valid Value  
+### 1️1️ Expressions Inside JSX Must Return a Valid Value  
 **Incorrect:**  
 ```jsx
 const logMessage = () => console.log("Hello");
@@ -128,7 +128,7 @@ const getMessage = () => "Hello!";
 return <h1>{getMessage()}</h1>;
 ```
 
-### 1️⃣2️⃣ JSX Comments Must Use `{/* */}` Syntax  
+### 1️2️ JSX Comments Must Use `{/* */}` Syntax  
 **Incorrect:**  
 ```jsx
 // This is a comment  
@@ -138,7 +138,7 @@ return <h1>{getMessage()}</h1>;
 {/* This is a JSX comment */}
 ```
 
-### 1️⃣3️⃣ Avoid Using Functions Directly in JSX  
+### 1️3️ Avoid Using Functions Directly in JSX  
 **Incorrect:**  
 ```jsx
 <button onClick={handleClick()}>Click Me</button>
@@ -148,7 +148,7 @@ return <h1>{getMessage()}</h1>;
 <button onClick={handleClick}>Click Me</button>
 ```
 
-### 1️⃣4️⃣ JSX `key` Props Must Be Unique in Lists  
+### 1️4️ JSX `key` Props Must Be Unique in Lists  
 **Incorrect:**  
 ```jsx
 const items = ["A", "B", "C"];
@@ -160,7 +160,7 @@ const items = [{ id: 1, name: "A" }, { id: 2, name: "B" }];
 return items.map(item => <li key={item.id}>{item.name}</li>);
 ```
 
-### 1️⃣5️⃣ Using JSX Fragments with `key`  
+### 1️5️ Using JSX Fragments with `key`  
 ```jsx
 const items = ["A", "B", "C"];
 return items.map((item, index) => (
@@ -171,13 +171,13 @@ return items.map((item, index) => (
 ));
 ```
 
-### 1️⃣6️⃣ Use `dangerouslySetInnerHTML` with Caution  
+### 1️6️ Use `dangerouslySetInnerHTML` with Caution  
 ```jsx
 const rawHTML = "<h1>Bold Text</h1>";
 return <div dangerouslySetInnerHTML={{ __html: rawHTML }} />;
 ```
 
-### 1️⃣7️⃣ JSX Attributes Cannot Accept Objects (Except `style` & `props`)  
+### 1️7️ JSX Attributes Cannot Accept Objects (Except `style` & `props`)  
 **Incorrect:**  
 ```jsx
 const user = { name: "Naresh" };
