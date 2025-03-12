@@ -40,8 +40,11 @@ import {UseRefHook} from './hooks/use-ref';
 // import { UseContextHook} from './hooks/use-context';
 // import {UseReducerHook} from './hooks/use-reducer';
 import {UseCallBackParent} from './hooks/useCallBack/useCallBackParent';
-import {UseLayoutEffect} from './hooks/useLayoutEffect/UseLayoutEffect'
+import {UseLayoutEffect} from './hooks/useLayoutEffect/UseLayoutEffect';
 
+
+// useCallBack hook
+import  TheParent from './hooks/useCallBack/TheParent';
 
 // import {CustomeHook} from './hooks/custom-hook';
 // import {TestCustomeHook} from './hooks/custom-hook-exaple';
@@ -97,7 +100,9 @@ root.render(
         // <UseContextHook></UseContextHook>
         // <UseReducerHook></UseReducerHook>
         // <UseCallBackParent></UseCallBackParent>
-        <UseLayoutEffect></UseLayoutEffect>
+        // <UseLayoutEffect></UseLayoutEffect>
+
+        <TheParent></TheParent>
 
         // <CustomeHook></CustomeHook>
         // <TestCustomeHook></TestCustomeHook>
