@@ -86,7 +86,7 @@ root.render(
     // <Todo></Todo>
     // <Calculator></Calculator>
     // <VirtualDom></VirtualDom>
-    //<ConditinalRendering></ConditinalRendering>
+    <ConditinalRendering></ConditinalRendering>
     // <LocalFiles></LocalFiles>
     // <List></List>
     
@@ -102,7 +102,7 @@ root.render(
         // <UseCallBackParent></UseCallBackParent>
         // <UseLayoutEffect></UseLayoutEffect>
 
-        <TheParent></TheParent>
+        // <TheParent></TheParent>
 
         // <CustomeHook></CustomeHook>
         // <TestCustomeHook></TestCustomeHook>
